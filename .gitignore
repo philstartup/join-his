@@ -1,0 +1,15 @@
+.git/
+.phpintel/
+.idea/
+.settings/
+public/attachment/
+runtime/
+vendor/
+.buildpath
+.DS_Store
+.env
+.project
+.phpunit*
+*.cache
+*.patch
+*.lock
