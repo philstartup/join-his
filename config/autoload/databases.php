@@ -11,7 +11,7 @@ declare(strict_types=1);
  */
 use Hyperf\Database\Commands\ModelOption;
 use function Hyperf\Support\env;
-
+// var_dump(env('DB_HOST', 'localhost'),"=============");
 return [
     'default' => [
         'driver' => env('DB_DRIVER', 'mysql'),

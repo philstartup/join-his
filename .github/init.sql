@@ -1,3 +1,4 @@
+
 -- 导出  表 multi-tenant.app 结构
 CREATE TABLE IF NOT EXISTS `app` (
   `id` varchar(20) NOT NULL COMMENT '应用 ID',
