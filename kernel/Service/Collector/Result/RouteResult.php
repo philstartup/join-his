@@ -1,9 +1,17 @@
 <?php
+/*
+ * @Author: luyongqiang phillu@outlook.com
+ * @Date: 2024-04-15 09:00:24
+ * @LastEditors: luyongqiang phillu@outlook.com
+ * @LastEditTime: 2024-04-17 18:30:37
+ * @FilePath: \join-his\join-his\kernel\Service\Collector\Result\RouteResult.php
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 
 declare(strict_types=1);
 
 namespace Kernel\Service\Collector\Result;
-
+use function Hyperf\Collection\data_get;
 /**
  * 路由值 - 结果类.
  */

@@ -15,6 +15,7 @@ use Hyperf\Contract\PaginatorInterface;
 use Hyperf\Di\Annotation\Inject;
 use Kernel\Exception\NotFoundException;
 use function Hyperf\Support\make;
+use function Hyperf\Collection\data_get;
 /**
  * 用户 - 服务类.
  */
