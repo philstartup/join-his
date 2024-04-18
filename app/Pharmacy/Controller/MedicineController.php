@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace App\Pharmacy\Controller;
 
+use App\Pharmacy\Collection\DrugCollection;
+use App\Pharmacy\Resource\DrugResource;
 use Core\Controller\AbstractController;
 use Core\Request\SearchRequest;
+use Core\Service\Pharmacy\MedicineService;
+use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpServer\Annotation\Controller;
 use Hyperf\HttpServer\Annotation\DeleteMapping;
 use Hyperf\HttpServer\Annotation\GetMapping;
@@ -17,16 +21,21 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * MedicineController - 控制器.
  */
-#[Controller('MedicineController')]
+#[Controller('pharmacy/medicine')]
 class MedicineController extends AbstractController
 {
+    #[Inject]
+    protected MedicineService $service;
     /**
      * MedicineController - 列表.
      */
-    #[GetMapping('')]
-    public function index(SearchRequest $request): ResponseInterface
+    #[GetMapping('list')]
+    public function list(SearchRequest $request): ResponseInterface
     {
-        return Response::success();
+     
+        $data = $this->service->search($request->searchParams());
+        // return DrugCollection::make($data);
+        return Response::withData($data);
     }
 
     /**
@@ -42,7 +51,7 @@ class MedicineController extends AbstractController
      * MedicineController - 创建.
      */
     #[PostMapping('')]
-    public function create(): ResponseInterface
+    public function add(): ResponseInterface
     {
         return Response::success();
     }

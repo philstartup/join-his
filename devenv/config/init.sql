@@ -382,20 +382,37 @@ INSERT INTO `_test` (`id`, `name`, `phone`, `password`, `status`, `created_at`, 
 
 ------药房相关的表-------
 DROP TABLE IF EXISTS `dms_drug`;
-CREATE TABLE `dms_drug` (
+CREATE TABLE `pms_drug`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `code` varchar(64) DEFAULT NULL,
-  `name` varchar(64) DEFAULT NULL,
-  `format` varchar(64) DEFAULT NULL,
-  `price` decimal(12,2) DEFAULT NULL,
-  `unit` varchar(64) DEFAULT NULL,
-  `manufacturer` varchar(64) DEFAULT NULL,
-  `dosage_id` bigint(20) DEFAULT NULL,
-  `type_id` bigint(20) DEFAULT NULL,
-  `mnemonic_code` varchar(64) DEFAULT NULL,
-  `create_date` datetime DEFAULT NULL,
-  `stock` bigint(20) DEFAULT NULL,
-  `generic_name` varchar(64) DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
+  `code` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '药品编码',
+  `name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '药品名称',
+  `format` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '药品规格',
+  `is_base` tinyint(1) UNSIGNED NULL DEFAULT 0 COMMENT '基药标识 0否 1是',
+  `batch_no` varchar(64) NULL COMMENT '药品批号',
+  `expiration date` date NULL COMMENT '有效期',
+  `stock` bigint(20) NULL DEFAULT NULL COMMENT '库存',
+  `price` decimal(12, 2) NULL DEFAULT NULL COMMENT '药品进价',
+  `retail_price` decimal(10, 2) NULL COMMENT '药品零售价',
+  `unit` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '包装单位',
+  `manufacturer` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '生产厂家',
+  `dosage_id` bigint(20) NULL DEFAULT NULL COMMENT '药品剂型',
+  `type_id` bigint(20) NULL DEFAULT NULL COMMENT '药品类型',
+  `mnemonic_code` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '拼音助记码',
+  `generic_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '通用名',
+  `status` int(1) NULL DEFAULT NULL COMMENT '状态',
+  `store` varchar(255) CHARACTER SET utf8mb4 NULL COMMENT '存放位置',
+  `created_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `updated_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '修改时间',
+  `deleted_at` timestamp(0) NULL DEFAULT NULL COMMENT '删除时间 ( 软删除 )',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=2967 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='药品项目表（包括了重要、中成药、草药）';
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '药品项目表（包括了西药、中药、中成药、草药）' ROW_FORMAT = Dynamic;
+
+DROP TABLE IF EXISTS `dms_dict`;
+CREATE TABLE `pms_dict`  (
+  `id` int(64) NOT NULL,
+  `type` int(64) NULL DEFAULT 0 COMMENT '树状字典类型 0，1患者类型 2 药品类型 3 药品剂型',
+  `name` varchar(255) CHARACTER SET utf8mb4 NULL COMMENT '类型名称',
+  `status` varchar(255) NULL COMMENT '状态',
+  `created_at` datetime(255) NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '字典合集' ROW_FORMAT = Dynamic;
