@@ -1,4 +1,12 @@
 <?php
+/*
+ * @Author: luyongqiang phillu@outlook.com
+ * @Date: 2024-04-15 09:00:25
+ * @LastEditors: luyongqiang phillu@outlook.com
+ * @LastEditTime: 2024-04-19 18:28:39
+ * @FilePath: \join-his\join-his\config\autoload\databases.php
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 
 declare(strict_types=1);
 
@@ -51,4 +59,24 @@ return [
             ],
         ],
     ],
+    'join' => [
+        'driver' => Hyperf\Database\Driver\MySQL\Driver::class,
+        'host' => env('DB_SECOND_HOST', 'localhost'),
+        'port' => env('DB_SECOND_PORT', 3306),
+        'database' => env('DB_SECOND_DATABASE', 'hospital'),
+        'username' => env('DB_SECOND_USERNAME', 'root'),
+        'password' => env('DB_SECOND_PASSWORD', ''),
+        'charset' => env('DB_SECOND_CHARSET', 'utf8mb4'),
+        'collation' => env('DB_SECOND_COLLATION', 'utf8mb4_unicode_ci'),
+        'prefix' => env('DB_SECOND_PREFIX', ''),
+        'pool' => [
+            'min_connections' => 1,
+            'max_connections' => 10,
+            'connect_timeout' => 10.0,
+            'wait_timeout' => 3.0,
+            'heartbeat' => -1,
+            'max_idle_time' => (float) env('DB_MAX_IDLE_TIME', 60),
+        ],
+    ],
 ];
+

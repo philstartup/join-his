@@ -3,7 +3,7 @@
  * @Author: luyongqiang phillu@outlook.com
  * @Date: 2024-04-18 10:16:56
  * @LastEditors: luyongqiang phillu@outlook.com
- * @LastEditTime: 2024-04-19 18:11:45
+ * @LastEditTime: 2024-04-19 18:19:50
  * @FilePath: \join-his\join-his\core\Service\Pharmacy\MedicineService.php
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -89,12 +89,6 @@ class MedicineService extends AbstractService
 
         return $drug->stock;
     }
-
-
-    
-
-
-
 
 
     /**
