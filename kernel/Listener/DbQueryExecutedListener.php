@@ -3,7 +3,7 @@
  * @Author: luyongqiang phillu@outlook.com
  * @Date: 2024-04-14 21:41:37
  * @LastEditors: luyongqiang phillu@outlook.com
- * @LastEditTime: 2024-04-15 04:39:53
+ * @LastEditTime: 2024-04-19 14:39:50
  * @FilePath: /hyperf-skeleton/kernel/Listener/DbQueryExecutedListener.php
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -62,7 +62,7 @@ class DbQueryExecutedListener implements ListenerInterface
                 }
             }
 
-            $this->logger->info(sprintf('[%s] %s', $event->time, $sql));
+            $this->logger->info(sprintf('[%s:%s] %s', $event->connectionName, $event->time, $sql));
         }
     }
 }
