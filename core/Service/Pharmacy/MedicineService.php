@@ -3,7 +3,7 @@
  * @Author: luyongqiang phillu@outlook.com
  * @Date: 2024-04-18 10:16:56
  * @LastEditors: luyongqiang phillu@outlook.com
- * @LastEditTime: 2024-04-19 17:55:45
+ * @LastEditTime: 2024-04-19 18:11:45
  * @FilePath: \join-his\join-his\core\Service\Pharmacy\MedicineService.php
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -39,9 +39,9 @@ class MedicineService extends AbstractService
      * 取药
      * @param int $patientId 患者ID
      * @param int $prescriptionId 处方ID
-     * @return PmsDrug
+     * @return bool
      */
-    public function takeDrug(int $patientId, int $prescriptionId)
+    public function dispenseDrug(int $patientId, int $prescriptionId)
     {
         $prescription = Prescription::find($prescriptionId);
         if (!$prescription) {
@@ -52,18 +52,26 @@ class MedicineService extends AbstractService
         if (!$drug) {
             throw new \Exception('Drug not found');
         }
-
-        if ($drug->stock > 0) {
-            // 取药操作
-            $drug->stock -= 1;
-            $drug->save();
-            // 记录取药信息
-        } else {
-            // 退药操作
-            $drug->stock += 1;
-            $drug->save();
-            // 记录退药信息
+        // 检查药品库存
+        if ($drug->stock <=0) {
+            throw new BusinessException('Drug out of stock');
         }
+
+        // 检查药品是否过期
+        if ($drug->expiration_date < date('Y-m-d')) {
+            throw new BusinessException('Drug expired');
+        }
+
+        // 检查药品是否过期
+        if ($drug->expiration_date < date('Y-m-d')) {
+            throw new BusinessException('Drug expired');
+        }
+    
+        // 取药操作
+        $drug->stock -= 1;
+        $drug->save();
+        // 记录取药信息
+        return true;
     }
 
 
@@ -82,20 +90,6 @@ class MedicineService extends AbstractService
         return $drug->stock;
     }
 
-    /**
-     * 获取药品库存
-     * @param string $drugName 药品名称
-     * @return int
-     */
-    public function getDrugStockByName(string $drugName): int
-    {
-        $drug = $this->repo->getByName($drugName);
-        if (!$drug) {
-            throw new \Exception('Drug not found');
-        }
-
-        return $drug->stock;
-    }
 
     
 
