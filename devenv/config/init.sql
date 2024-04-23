@@ -416,3 +416,16 @@ CREATE TABLE `pms_dict`  (
   `created_at` datetime(255) NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '字典合集' ROW_FORMAT = Dynamic;
+
+CREATE TABLE `pms_drug_manufacturers`  (
+  `id` int(64) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '名称',
+  `code` varchar(255) NULL COMMENT '编码',
+  `contact_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '联系人姓名',
+  `contact_phone` varchar(255) NULL COMMENT '联系电话',
+  `contact_addr` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '联系地址',
+  `post_code` tinyint(255) NULL COMMENT '邮编',
+  `is_supplier` tinyint(1) NULL COMMENT '是否是供应商',
+  `is_manufacturer` tinyint(1) NULL COMMENT '是否是生产商',
+  PRIMARY KEY (`id`)
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '厂商信息表';
