@@ -1,8 +1,16 @@
 <?php
+/*
+ * @Author: luyongqiang phillu@outlook.com
+ * @Date: 2024-04-18 10:25:24
+ * @LastEditors: luyongqiang phillu@outlook.com
+ * @LastEditTime: 2024-04-23 14:06:40
+ * @FilePath: \join-his\join-his\core\Repository\Pharmacy\PmsDrugRepository.php
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 
 declare(strict_types=1);
 
-namespace Core\Repository;
+namespace Core\Repository\Pharmacy;
 
 use Core\Constants\AppId;
 use Core\Model\PmsDrug;
@@ -11,7 +19,7 @@ use Hyperf\Database\Model\Collection;
 use Hyperf\Database\Model\Model;
 use Hyperf\Database\Model\Builder;
 use Kernel\Helper\TreeHelper;
-
+use Core\Repository\AbstractRepository;
 /**
  * 测试 - 仓库类.
  *
@@ -19,7 +27,7 @@ use Kernel\Helper\TreeHelper;
  * @method Test create(array $data)
  * @method Test update(Test $model, array $data)
  */
-class PmsDrugRepository extends AbstractRepository
+class DrugRepository extends AbstractRepository
 {
     protected Model|string $modelClass = PmsDrug::class;
 

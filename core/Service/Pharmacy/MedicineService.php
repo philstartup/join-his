@@ -3,7 +3,7 @@
  * @Author: luyongqiang phillu@outlook.com
  * @Date: 2024-04-18 10:16:56
  * @LastEditors: luyongqiang phillu@outlook.com
- * @LastEditTime: 2024-04-19 18:19:50
+ * @LastEditTime: 2024-04-23 14:51:56
  * @FilePath: \join-his\join-his\core\Service\Pharmacy\MedicineService.php
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -12,7 +12,7 @@ namespace Core\Service\Pharmacy;
 
 use Core\Exception\BusinessException;
 use Core\Model\PmsDrug;
-use Core\Repository\PmsDrugRepository;
+use Core\Repository\Pharmacy\DrugRepository;
 use Core\Service\AbstractService;
 use Hyperf\Contract\PaginatorInterface;
 use Hyperf\Di\Annotation\Inject;
@@ -21,7 +21,7 @@ use Kernel\Exception\NotFoundException;
 class MedicineService extends AbstractService
 {
     #[Inject]
-    protected PmsDrugRepository $repo;
+    protected DrugRepository $repo;
 
     /**
      * 获取药品列表
@@ -43,6 +43,7 @@ class MedicineService extends AbstractService
      */
     public function dispenseDrug(int $patientId, int $prescriptionId)
     {
+        //TODO 检查药品是否过期 预留
         $prescription = Prescription::find($prescriptionId);
         if (!$prescription) {
             throw new \Exception('Prescription not found');
@@ -99,6 +100,7 @@ class MedicineService extends AbstractService
      */
     public function returnDrug(int $patientId, int $prescriptionId)
     {
+        //TODO 检查药品是否过期 预留
         $prescription = Prescription::find($prescriptionId);
         if (!$prescription) {
             throw new \Exception('Prescription not found');
