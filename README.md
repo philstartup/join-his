@@ -427,7 +427,7 @@ php bin/hyperf.php vendor:publish hyperf/async-queue
 
 
 ##  6.干起来
-方法一 全docker开发环境 hyperf+mysql+redis
+方法一 全docker开发环境 hyperf+mysql+redis (项目中devenv目录是docker环境初始化目录非项目目录)
 ```bash
 下载docker 在当前项目目录下运行 详情参见docker-compose.yml
 docker compose up -d 
