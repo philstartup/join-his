@@ -423,7 +423,18 @@ php bin/hyperf.php db:seed --path=seeders/DemoSeeder.php # 指定具体文件
 # 发布 Redis 消息异步队列配置 ( 如果要发布其他组件的配置，直接修改最后的组件名即可 )
 php bin/hyperf.php vendor:publish hyperf/async-queue
 ```
+
+
+
 ##  6.干起来
+方法一 全docker开发环境 hyperf+mysql+redis
+```bash
+下载docker 在当前项目目录下运行 详情参见docker-compose.yml
+docker compose up -d 
+```
+
+
+方法二 仅项目docker
 ```bash
 docker run --name hyperf \
 -v /home/phillu/code/php/Hospital:/data/project \
